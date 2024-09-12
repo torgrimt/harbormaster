@@ -8,3 +8,7 @@ services:
       - ${HM_DATA_DIR}/config:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations, see alternative methods
     restart: unless-stopped
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage.rule=Host(`{{ HM_URL }}`)"
+      - "traefik.http.routers.homepage.entrypoints=web"
+
